@@ -84,16 +84,8 @@ revoke all on public.case_submissions from public, anon, authenticated;
 revoke all on public.published_cases from public, anon, authenticated;
 revoke all on public.members from public, anon, authenticated;
 
--- Check admin membership from a SECURITY DEFINER routine to avoid recursive RLS.
-create or replace function public.is_pmac_admin()
-returns boolean language sql stable security definer set search_path = ''
-as $$
-  select exists (
-    select 1 from public.admin_users where user_id = (select auth.uid())
-  );
-$$;
-revoke all on function public.is_pmac_admin() from public, anon;
-grant execute on function public.is_pmac_admin() to authenticated;
+-- Administrative access checks use the caller's own row in admin_users.
+-- No exposed SECURITY DEFINER function is required.
 
 -- Admin accounts only see their OWN role row. No public role listing.
 create policy "Administrators can verify their own role" on public.admin_users
@@ -106,9 +98,9 @@ create policy "Anyone may lodge a preliminary application" on public.membership_
     status = 'received' and charter_acknowledged and authority_confirmed and privacy_acknowledged
   );
 create policy "Authorised staff read applications" on public.membership_applications
-  for select to authenticated using (public.is_pmac_admin());
+  for select to authenticated using ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid()))));
 create policy "Authorised staff update application status" on public.membership_applications
-  for update to authenticated using (public.is_pmac_admin()) with check (public.is_pmac_admin());
+  for update to authenticated using ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid())))) with check ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid()))));
 grant insert on public.membership_applications to anon, authenticated;
 grant select, update on public.membership_applications to authenticated;
 
@@ -117,9 +109,9 @@ create policy "Anyone may lodge a preliminary case request" on public.case_submi
     status = 'received' and authority_confirmed and accept_limitations and privacy_acknowledged
   );
 create policy "Authorised staff read case requests" on public.case_submissions
-  for select to authenticated using (public.is_pmac_admin());
+  for select to authenticated using ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid()))));
 create policy "Authorised staff update case status" on public.case_submissions
-  for update to authenticated using (public.is_pmac_admin()) with check (public.is_pmac_admin());
+  for update to authenticated using ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid())))) with check ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid()))));
 grant insert on public.case_submissions to anon, authenticated;
 grant select, update on public.case_submissions to authenticated;
 
@@ -127,22 +119,22 @@ grant select, update on public.case_submissions to authenticated;
 create policy "Anonymous visitors read public cases" on public.published_cases
   for select to anon using (is_public);
 create policy "Authenticated users read public or authorised cases" on public.published_cases
-  for select to authenticated using (is_public or (select public.is_pmac_admin()));
+  for select to authenticated using (is_public or (select (exists (select 1 from public.admin_users a where a.user_id = (select auth.uid())))));
 create policy "Authorised staff publish cases" on public.published_cases
-  for insert to authenticated with check (public.is_pmac_admin());
+  for insert to authenticated with check ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid()))));
 create policy "Authorised staff manage public cases" on public.published_cases
-  for update to authenticated using (public.is_pmac_admin()) with check (public.is_pmac_admin());
+  for update to authenticated using ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid())))) with check ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid()))));
 grant select on public.published_cases to anon, authenticated;
 grant insert, update on public.published_cases to authenticated;
 
 create policy "Anonymous visitors read active public members" on public.members
   for select to anon using (is_public and status = 'active');
 create policy "Authenticated users read public or authorised members" on public.members
-  for select to authenticated using ((is_public and status = 'active') or (select public.is_pmac_admin()));
+  for select to authenticated using ((is_public and status = 'active') or (select (exists (select 1 from public.admin_users a where a.user_id = (select auth.uid())))));
 create policy "Authorised staff add members" on public.members
-  for insert to authenticated with check (public.is_pmac_admin());
+  for insert to authenticated with check ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid()))));
 create policy "Authorised staff manage members" on public.members
-  for update to authenticated using (public.is_pmac_admin()) with check (public.is_pmac_admin());
+  for update to authenticated using ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid())))) with check ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid()))));
 grant select on public.members to anon, authenticated;
 grant insert, update on public.members to authenticated;
 
@@ -154,3 +146,6 @@ grant insert, update on public.members to authenticated;
 -- Production hardening: add a rate-limited server-side intake endpoint with CAPTCHA,
 -- email verification, abuse detection, retention rules and an audit-log process.
 -- Public direct inserts are enabled for initial low-volume setup; they are NOT abuse-proof.
+
+-- Prevent public API callers from executing the auto-RLS event-trigger function.
+revoke all on function public.rls_auto_enable() from public, anon, authenticated;
