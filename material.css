@@ -127,3 +127,9 @@ p{color:#5c7080}a,button,input,select,textarea{-webkit-tap-highlight-color:trans
 .member-directory-controls input:focus-visible,.searchbar input:focus-visible,.searchbar select:focus-visible{outline:2px solid #205f91;outline-offset:2px}
 .nav-search-pane select{min-width:108px;background:#fff;color:#173b51;border:1px solid #b2c0c9;padding:11px;border-radius:5px}
 @media(max-width:650px){.member-directory-controls{align-items:stretch;flex-direction:column}.member-directory-controls input,.member-directory-controls button{width:100%}.searchbar .btn{width:100%}}
+
+/* Registry-only search and publication controls */
+.admin-search-label{display:block;color:#29465b;font-weight:700;margin:24px 0 9px}
+.admin-search{width:min(100%,640px);display:block;padding:13px 16px;border-radius:9px;border:1px solid #9fb1bc;background:#fff;color:#1c384e;font:inherit;margin-bottom:15px}
+.admin-search:focus-visible{outline:2px solid #1b5d8e;outline-offset:2px}
+.admin-table tbody tr[hidden]{display:none!important}
