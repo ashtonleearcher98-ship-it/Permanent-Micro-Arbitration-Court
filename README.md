@@ -94,7 +94,7 @@ index.html                    Main HTML structure and navigation
 styles.css                    Full responsive visual design
 app.js                        Routing, forms, admin, public registry
 config.js                     Public-only database configuration
-assets/pmac-seal.webp          Supplied official seal (cropped and optimised)
+assets/pmac-seal.png          Supplied official seal (cropped and optimised)
 assets/favicon.svg            Compact PMAC site icon
 database/schema.sql           Supabase tables, grants and RLS policies
 documents/*.md                Proposed institutional drafts
@@ -115,3 +115,15 @@ documents/*.md                Proposed institutional drafts
 - Check display at 360px, 768px and 1440px viewports.
 
 © 2026 PMAC founding initiative. No association with the Permanent Court of Arbitration in The Hague.
+
+## Editorial redesign — 4 November 2026
+
+The website now uses a formal dual-language masthead, a central PMAC seal, a photography-led homepage, a neutral navigation strip and editorial news/case content. Material 3-inspired controls are used on forms, filters, search and responsive menus without mimicking Google's application chrome.
+
+All primary pages are managed by the lightweight hash router (`#/about`, `#/services`, `#/cases`, `#/resources`, `#/cooperation`, `#/membership`, `#/governance`, `#/news`, `#/join`, `#/submit-case`, `#/privacy`, `#/contact`, `#/admin`). This works on GitHub Pages without server-side routing.
+
+The architectural photo in the homepage backdrop is an **illustrative CC0 photograph** of Randolph County Courthouse (Arkansas), by Brandonrush, Wikimedia Commons, not PMAC headquarters: https://commons.wikimedia.org/wiki/File:Randolph_County_Courthouse_(Arkansas)_001.jpg. Its appearance does not suggest an affiliation with that courthouse. A local vector fallback is included for offline environments.
+
+### Security
+
+No member or case data is prepopulated and no sample filings are exposed. The online membership and case forms remain disabled until a separate Supabase backend is configured using `config.js` and `database/schema.sql`. Do not place any service-role secret or private database credential in this public repository. Only public, publication-approved case records may be shown in the public case registry.
