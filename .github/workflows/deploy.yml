@@ -40,17 +40,14 @@ jobs:
                   raise SystemExit("PMAC_SUPABASE_URL must be a Supabase project HTTPS URL.")
               if not (key.startswith("sb_publishable_") or key.startswith("eyJ")):
                   raise SystemExit("Use only a public Supabase publishable/legacy anon key; never a secret/service-role key.")
+              config = {"supabaseUrl": url, "supabasePublishableKey": key}
+              pathlib.Path("config.js").write_text(
+                  "window.PMAC_CONFIG = Object.freeze(" + json.dumps(config, separators=(",", ":")) + ");\n",
+                  encoding="utf-8"
+              )
               print("PMAC database URL and publishable key are configured for this build.")
           else:
-              print("PMAC database is not configured. Public pages deploy; joining and case filing remain disabled.")
-          config = {
-              "supabaseUrl": url,
-              "supabasePublishableKey": key
-          }
-          pathlib.Path("config.js").write_text(
-              "window.PMAC_CONFIG = Object.freeze(" + json.dumps(config, separators=(",", ":")) + ");\n",
-              encoding="utf-8"
-          )
+              print("No project variables set. Using the checked-in config.js; initial default is read-only.")
           PY
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
