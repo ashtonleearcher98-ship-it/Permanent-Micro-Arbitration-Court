@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12273a">
+  <meta name="description" content="The Permanent Micro-Arbitration Court: an independent, consent-based framework for peaceful micronational dispute resolution.">
+  <meta property="og:title" content="Permanent Micro-Arbitration Court">
+  <meta property="og:description" content="Peaceful resolution. Institutional independence.">
+  <title>Permanent Micro-Arbitration Court | PMAC</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="utility-bar">
+      <div class="shell utility-inner">
+        <span><span class="little-glyph">✦</span> PERMANENT MICRO-ARBITRATION COURT</span>
+        <span class="utility-status"><span class="status-dot"></span> FOUNDING PHASE <span class="utility-divider">|</span> EST. PROPOSED 2026</span>
+      </div>
+    </div>
+    <div class="main-header shell">
+      <a class="brand" href="#/" data-link aria-label="PMAC home">
+        <img src="assets/pmac-seal.webp" alt="" width="58" height="58">
+        <span class="brand-copy"><strong>PMAC</strong><span>Permanent Micro-Arbitration Court</span></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#/about" data-link>About</a>
+        <a href="#/services" data-link>Services</a>
+        <a href="#/cases" data-link>Cases</a>
+        <a href="#/membership" data-link>Membership</a>
+        <a href="#/governance" data-link>Governance</a>
+        <a href="#/resources" data-link>Resources</a>
+      </nav>
+      <div class="header-actions">
+        <a href="#/join" class="btn btn-ghost btn-small" data-link>Join PMAC <span aria-hidden="true">↗</span></a>
+        <a href="#/submit-case" class="btn btn-primary btn-small" data-link>Submit a case <span aria-hidden="true">↗</span></a>
+      </div>
+      <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
+      <a href="#/" data-link>Home</a><a href="#/about" data-link>About</a><a href="#/services" data-link>Services</a><a href="#/cases" data-link>Cases</a><a href="#/membership" data-link>Membership</a><a href="#/governance" data-link>Governance</a><a href="#/resources" data-link>Resources</a><a href="#/news" data-link>News</a><a href="#/contact" data-link>Contact</a><a href="#/join" data-link>Join PMAC</a><a href="#/submit-case" data-link>Submit a case</a>
+    </nav>
+  </header>
+  <main id="main" tabindex="-1" aria-live="polite"><div class="loading-page shell">Loading PMAC portal…</div></main>
+  <footer class="site-footer">
+    <div class="shell footer-top">
+      <div class="footer-identity"><img src="assets/pmac-seal.webp" alt="PMAC seal" width="76" height="76"><div><strong>Permanent Micro-Arbitration Court</strong><p>An independent framework for voluntary micronational arbitration and mediation.</p></div></div>
+      <div class="footer-links"><h4>Institution</h4><a href="#/about">About the Court</a><a href="#/governance">Governance</a><a href="#/membership">Membership</a><a href="#/news">Notices & news</a></div>
+      <div class="footer-links"><h4>Dispute resolution</h4><a href="#/services">Services</a><a href="#/cases">Public case register</a><a href="#/submit-case">Submit a case</a><a href="#/resources">Rules & documents</a></div>
+      <div class="footer-links"><h4>Information</h4><a href="#/join">Join PMAC</a><a href="#/contact">Contact</a><a href="#/privacy">Privacy notice</a><a href="#/admin">Registry access</a></div>
+    </div>
+    <div class="shell footer-bottom"><span>© <span id="copyright-year">2026</span> PMAC. Proposed voluntary micronational institution.</span><span>Independent by design · Jurisdiction by consent · Not a national court</span></div>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
