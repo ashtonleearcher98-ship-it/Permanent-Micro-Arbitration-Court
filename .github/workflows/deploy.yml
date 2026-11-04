@@ -3,13 +3,16 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
   group: pages
   cancel-in-progress: true
+
 jobs:
   deploy:
     environment:
@@ -21,6 +24,34 @@ jobs:
         uses: actions/checkout@v4
       - name: Configure Pages
         uses: actions/configure-pages@v5
+      - name: Prepare PMAC database connection
+        env:
+          PMAC_SUPABASE_URL: ${{ vars.PMAC_SUPABASE_URL }}
+          PMAC_SUPABASE_PUBLISHABLE_KEY: ${{ vars.PMAC_SUPABASE_PUBLISHABLE_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib, re
+          url = os.environ.get("PMAC_SUPABASE_URL", "").strip().rstrip("/")
+          key = os.environ.get("PMAC_SUPABASE_PUBLISHABLE_KEY", "").strip()
+          if bool(url) != bool(key):
+              raise SystemExit("Set BOTH PMAC_SUPABASE_URL and PMAC_SUPABASE_PUBLISHABLE_KEY repository variables.")
+          if url:
+              if not re.fullmatch(r"https://[a-z0-9-]+\.supabase\.co", url):
+                  raise SystemExit("PMAC_SUPABASE_URL must be a Supabase project HTTPS URL.")
+              if not (key.startswith("sb_publishable_") or key.startswith("eyJ")):
+                  raise SystemExit("Use only a public Supabase publishable/legacy anon key; never a secret/service-role key.")
+              print("PMAC database URL and publishable key are configured for this build.")
+          else:
+              print("PMAC database is not configured. Public pages deploy; joining and case filing remain disabled.")
+          config = {
+              "supabaseUrl": url,
+              "supabasePublishableKey": key
+          }
+          pathlib.Path("config.js").write_text(
+              "window.PMAC_CONFIG = Object.freeze(" + json.dumps(config, separators=(",", ":")) + ");\n",
+              encoding="utf-8"
+          )
+          PY
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:
