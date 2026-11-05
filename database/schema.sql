@@ -20,6 +20,9 @@ create table if not exists public.membership_applications (
   contact_email varchar(250) not null,
   region varchar(130),
   description text not null check (length(description) between 25 and 2500),
+  emergency_agency_name varchar(150),
+  institutional_cooperation_accepted boolean not null default false,
+  agency_cooperation_authorised boolean not null default false,
   charter_acknowledged boolean not null default false check (charter_acknowledged),
   authority_confirmed boolean not null default false check (authority_confirmed),
   privacy_acknowledged boolean not null default false check (privacy_acknowledged),
@@ -96,11 +99,19 @@ grant select on public.admin_users to authenticated;
 create policy "Anyone may lodge a preliminary application" on public.membership_applications
   for insert to anon, authenticated with check (
     status = 'received' and charter_acknowledged and authority_confirmed and privacy_acknowledged
+    and institutional_cooperation_accepted and agency_cooperation_authorised
+    and length(trim(coalesce(emergency_agency_name, ''))) >= 3
   );
 create policy "Authorised staff read applications" on public.membership_applications
   for select to authenticated using ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid()))));
 create policy "Authorised staff update application status" on public.membership_applications
-  for update to authenticated using ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid())))) with check ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid()))));
+  for update to authenticated
+  using ((exists (select 1 from public.admin_users a where a.user_id = (select auth.uid()))))
+  with check (
+    (exists (select 1 from public.admin_users a where a.user_id = (select auth.uid())))
+    and (status <> 'approved' or (institutional_cooperation_accepted and agency_cooperation_authorised
+         and length(trim(coalesce(emergency_agency_name, ''))) >= 3))
+  );
 grant insert on public.membership_applications to anon, authenticated;
 grant select, update on public.membership_applications to authenticated;
 

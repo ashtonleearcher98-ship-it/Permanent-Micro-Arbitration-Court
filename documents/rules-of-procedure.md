@@ -13,6 +13,9 @@
 10. **Confidentiality.** Filings are private by default; publication requires express approval and appropriate redaction.
 11. **Decision.** Written reasons must address jurisdiction, facts and outcome; votes are decided by a majority.
 12. **Review.** A limited procedural challenge may be made within fourteen days.
-13. **Lawful authority.** PMAC has no criminal jurisdiction or coercive powers and cannot override recognised courts.
-14. **Costs.** Fees, if introduced, must be published in advance and administered impartially.
-15. **Interpretation.** The competent Assembly may revise these rules prospectively, without prejudice to pending proceedings.
+13. **Institutional summons and internal charges.** For an admitted member that accepted the cooperation protocol, PMAC may serve a non-coercive summons for an internal compliance hearing and a notice of alleged breach of PMAC rules. These are institutional processes, not criminal charges or police warrants.
+14. **Agency cooperation.** An admitted member must facilitate lawful cooperation through its named federal emergency/public-safety agency or authorised liaison, including service of notices, consensual attendance, lawful evidence preservation and referrals to competent authorities.
+15. **Rights and remedies.** Persons and members must receive adequate notice, an impartial hearing and an opportunity to answer allegations; non-compliance can result only in remedies within the association's own powers.
+16. **Lawful authority.** PMAC has no real-world powers to arrest, detain, search or conduct criminal prosecutions. Criminal matters may be referred to competent authorities, which decide independently under applicable law.
+17. **Costs.** Fees, if introduced, must be published in advance and administered impartially.
+18. **Interpretation.** The competent Assembly may revise these rules prospectively, without prejudice to pending proceedings.

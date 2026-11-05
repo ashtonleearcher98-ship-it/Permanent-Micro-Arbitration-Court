@@ -20,7 +20,13 @@ The Founding Parties recognise the importance of peaceful relations, fair proces
 1. Membership is open to micronations accepting this Convention and admission rules.
 2. Each admitted member appoints one Assembly representative with one vote.
 3. Membership alone does not impose compulsory jurisdiction or recognise international sovereignty.
-4. Admissions and withdrawals shall be documented by the Registry.
+4. A condition of admission is the applicant government's formal acceptance of the Membership Jurisdiction and Agency Cooperation Protocol, recorded by the Registry.
+5. By this undertaking, a member accepts PMAC's jurisdiction to administer complaints concerning compliance with its membership obligations. PMAC may issue notices of alleged institutional-rule violations ("institutional charges"), non-coercive summonses to internal proceedings, written directions and requests for production of material within agreed rules. These measures require notice, procedural fairness and an opportunity to respond.
+6. The member shall designate a federal emergency/public-safety agency or equivalent authorised liaison, and undertake to secure that body's full cooperation with lawful PMAC administrative requests, including delivery of notices, consensual attendance, lawful preservation of records and referrals to competent public authorities.
+7. This cooperation undertaking does **not** confer power to arrest, detain, search, seize property, file criminal charges, direct recognised police or override applicable law. Any actual arrest, detention or prosecution remains entirely within the jurisdiction of competent authorities independently empowered by applicable law and subject to due process.
+8. An admitted member's obligations to support internal compliance proceedings do not constitute blanket consent to arbitrate a separate dispute. Case-specific consent under Article VI remains necessary.
+9. Applications made before the Protocol was adopted require fresh express acceptance before membership may be approved.
+10. Admissions and withdrawals shall be documented by the Registry.
 
 ## Article IV — Organs
 1. Assembly of Member Micronations.
@@ -36,8 +42,8 @@ The Founding Parties recognise the importance of peaceful relations, fair proces
 
 ## Article VI — Jurisdiction
 1. PMAC may consider disputes concerning micronational diplomatic relations, agreements, constitutions, elections, organisations or other agreed matters.
-2. Jurisdiction requires documented consent of all necessary parties.
-3. PMAC cannot adjudicate crimes, real-world land title or sovereign status, or displace the jurisdiction of national authorities.
+2. Arbitration of a dispute requires documented consent of all necessary parties. Institutional compliance proceedings concerning the obligations of an admitted member may be administered under the member's express acceptance of Article III.
+3. PMAC cannot adjudicate crimes, issue real-world criminal charges, order arrests or detention, determine real-world land title or sovereign status, or displace the jurisdiction of national authorities.
 
 ## Article VII — Arbitrators
 1. Arbitrators must be impartial, independent and competent.
@@ -55,7 +61,7 @@ The Founding Parties recognise the importance of peaceful relations, fair proces
 ## Article IX — Awards and Compliance
 1. The parties shall identify whether they seek a non-binding recommendation or an award final within the PMAC framework.
 2. Any finality or enforceability remains subject to applicable law.
-3. PMAC may report voluntary compliance or non-compliance but has no independent real-world coercive powers.
+3. PMAC may report voluntary compliance or non-compliance, and after fair procedure may impose internal membership remedies such as a formal warning, suspension or a recommendation of termination. It has no independent real-world coercive powers.
 
 ## Article X — Review
 1. A party may request review within fourteen days on serious procedural unfairness, established bias, material fraud or jurisdictional error.
