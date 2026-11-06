@@ -83,7 +83,7 @@ GitHub is connected for file operations, but repository creation and GitHub Page
 3. Upload the contents of this directory **at the repository root**, including the hidden `.github` folder and `.nojekyll` file (not only the ZIP file). Replace the starter README with this project README if you chose to initialise one.
 4. Open your repository → **Settings → Pages → Build and deployment** → set **Source: GitHub Actions**.
 5. Commit to `main`. The included `.github/workflows/deploy.yml` will deploy the site.
-6. The expected website address will be of the form `https://YOUR-USERNAME.github.io/permanent-micro-arbitration-court/`. Confirm the exact URL in the repository's Pages settings; do not assume it is live until deployment succeeds.
+6. The expected website address will be of the form `https://greenwickgov.github.io/Permanent-Micro-Arbitration-Court/`. Confirm the exact URL in the repository's Pages settings; do not assume it is live until deployment succeeds.
 
 All internal routes use hash URLs (`#/cases`, `#/join`, etc.) so they work under GitHub Pages project subpaths without a server rewrite.
 
